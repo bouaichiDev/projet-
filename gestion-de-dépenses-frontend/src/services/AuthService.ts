@@ -28,10 +28,18 @@ export const AuthService = {
 
     try {
       const response = await api.post("/auth/login", credentials);
-      const { token, user } = response.data;
-      localStorage.setItem("token", token || response.data.accessToken);
+      const data = response.data;
+      // Backend AuthResponse is flat: { token, type, id, firstname, lastname, email }
+      const token = data.token || data.accessToken;
+      const user: User = data.user || {
+        id: data.id,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+      };
+      localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      return response.data;
+      return { token, user };
     } catch (error: any) {
       console.log("--- ERROR DETAILS LOGIN ---", error);
       if (error.response) {

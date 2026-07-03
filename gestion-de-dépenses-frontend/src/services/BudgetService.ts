@@ -1,6 +1,22 @@
 import { api, getApiMode, demoDb } from "./api";
 import { Budget } from "../types";
 
+// The GET /budget endpoint returns a BudgetStatusResponse ({ budgetAmount, ... })
+// while the rest of the app works with the Budget shape ({ amount, month, year }).
+// Normalize whatever the backend returns into a Budget the UI can rely on.
+function normalizeBudget(raw: any): Budget {
+  const now = new Date();
+  if (!raw) {
+    return { amount: 0, month: now.getMonth() + 1, year: now.getFullYear() };
+  }
+  return {
+    id: raw.id,
+    amount: Number(raw.amount ?? raw.budgetAmount ?? 0),
+    month: raw.month ?? now.getMonth() + 1,
+    year: raw.year ?? now.getFullYear(),
+  };
+}
+
 export const BudgetService = {
   async get(): Promise<Budget> {
     const mode = getApiMode();
@@ -9,11 +25,8 @@ export const BudgetService = {
     }
     try {
       const response = await api.get("/budget");
-      // Handle array vs object responses
-      if (Array.isArray(response.data)) {
-        return response.data[0] || { amount: 0, month: new Date().getMonth() + 1, year: new Date().getFullYear() };
-      }
-      return response.data;
+      const raw = Array.isArray(response.data) ? response.data[0] : response.data;
+      return normalizeBudget(raw);
     } catch (e) {
       // Return a standard budget if server returns 404
       return { amount: 1500, month: new Date().getMonth() + 1, year: new Date().getFullYear() };

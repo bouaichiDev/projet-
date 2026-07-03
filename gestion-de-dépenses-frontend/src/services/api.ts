@@ -26,6 +26,27 @@ api.interceptors.request.use(
   }
 );
 
+// Add Response Interceptor to unwrap the backend's ApiResponse envelope
+// The Spring Boot backend wraps every payload as { success, message, data }.
+// The frontend services expect the raw payload, so we unwrap `data` here once.
+api.interceptors.response.use(
+  (response) => {
+    const body = response.data;
+    if (
+      body &&
+      typeof body === "object" &&
+      "success" in body &&
+      "data" in body
+    ) {
+      response.data = body.data;
+    }
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 // -------------------------------------------------------------
 // CLIENT-SIDE DATABASE SIMULATOR (MODE DÉMO)
 // -------------------------------------------------------------
@@ -150,8 +171,9 @@ export function initDemoDb() {
 export function getApiMode(): "real" | "demo" {
   const mode = localStorage.getItem("api_mode");
   if (!mode) {
-    localStorage.setItem("api_mode", "demo");
-    return "demo";
+    // Default to "real" so the frontend talks to the Spring Boot backend.
+    localStorage.setItem("api_mode", "real");
+    return "real";
   }
   return mode as "real" | "demo";
 }

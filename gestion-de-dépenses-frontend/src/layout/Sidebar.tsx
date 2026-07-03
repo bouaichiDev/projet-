@@ -137,7 +137,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             <p className="text-[10px] text-slate-400 leading-normal">
               {apiMode === "demo" 
                 ? "Données locales. Idéal pour présenter sans serveur." 
-                : "Connecté à http://localhost:8080/api."
+                : "Connecté à http://localhost:8090/api."
               }
             </p>
           </div>
@@ -146,7 +146,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           {user && (
             <div className="flex items-center gap-3 p-2 rounded-xl">
               <div className="h-9 w-9 bg-slate-100 border border-slate-100 text-slate-700 rounded-xl flex items-center justify-center font-bold text-sm">
-                {user.firstname[0]}{user.lastname[0]}
+                {(user.firstname?.[0] ?? "")}{(user.lastname?.[0] ?? "")}
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="text-xs font-semibold text-[#1E293B] truncate">

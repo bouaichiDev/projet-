@@ -177,7 +177,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
               className="flex items-center gap-2 cursor-pointer p-1 rounded-xl hover:bg-slate-50 transition-colors"
             >
               <div className="h-9 w-9 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm">
-                {user.firstname[0]}{user.lastname[0]}
+                {(user.firstname?.[0] ?? "")}{(user.lastname?.[0] ?? "")}
               </div>
               <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${showProfileDropdown ? "rotate-180" : ""}`} />
             </button>

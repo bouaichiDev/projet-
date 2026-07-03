@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-02T16:32:07+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Oracle Corporation)"
+    date = "2026-07-03T15:11:17+0100",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.46.100.v20260624-0231, environment: Java 21.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class CategoryMapperImpl implements CategoryMapper {
@@ -24,10 +24,10 @@ public class CategoryMapperImpl implements CategoryMapper {
 
         CategoryResponse.CategoryResponseBuilder categoryResponse = CategoryResponse.builder();
 
-        categoryResponse.id( category.getId() );
-        categoryResponse.name( category.getName() );
         categoryResponse.color( category.getColor() );
         categoryResponse.icon( category.getIcon() );
+        categoryResponse.id( category.getId() );
+        categoryResponse.name( category.getName() );
 
         return categoryResponse.build();
     }
@@ -54,9 +54,9 @@ public class CategoryMapperImpl implements CategoryMapper {
 
         Category.CategoryBuilder category = Category.builder();
 
-        category.name( request.getName() );
         category.color( request.getColor() );
         category.icon( request.getIcon() );
+        category.name( request.getName() );
 
         return category.build();
     }

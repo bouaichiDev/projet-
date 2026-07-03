@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-02T16:32:07+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Oracle Corporation)"
+    date = "2026-07-03T15:11:17+0100",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.46.100.v20260624-0231, environment: Java 21.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class ExpenseMapperImpl implements ExpenseMapper {
@@ -28,13 +28,13 @@ public class ExpenseMapperImpl implements ExpenseMapper {
 
         ExpenseResponse.ExpenseResponseBuilder expenseResponse = ExpenseResponse.builder();
 
-        expenseResponse.id( expense.getId() );
-        expenseResponse.title( expense.getTitle() );
-        expenseResponse.description( expense.getDescription() );
         expenseResponse.amount( expense.getAmount() );
-        expenseResponse.expenseDate( expense.getExpenseDate() );
         expenseResponse.category( categoryMapper.toResponse( expense.getCategory() ) );
         expenseResponse.createdAt( expense.getCreatedAt() );
+        expenseResponse.description( expense.getDescription() );
+        expenseResponse.expenseDate( expense.getExpenseDate() );
+        expenseResponse.id( expense.getId() );
+        expenseResponse.title( expense.getTitle() );
         expenseResponse.updatedAt( expense.getUpdatedAt() );
 
         return expenseResponse.build();
@@ -62,10 +62,10 @@ public class ExpenseMapperImpl implements ExpenseMapper {
 
         Expense.ExpenseBuilder expense = Expense.builder();
 
-        expense.title( request.getTitle() );
-        expense.description( request.getDescription() );
         expense.amount( request.getAmount() );
+        expense.description( request.getDescription() );
         expense.expenseDate( request.getExpenseDate() );
+        expense.title( request.getTitle() );
 
         return expense.build();
     }

@@ -99,7 +99,7 @@ export const Profil: React.FC = () => {
           
           {/* Avatar frame */}
           <div className="relative h-20 w-20 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-3xl font-black shadow-md border border-blue-500 flex-shrink-0 select-none">
-            {user.firstname[0]}{user.lastname[0]}
+            {(user.firstname?.[0] ?? "")}{(user.lastname?.[0] ?? "")}
             <span className="absolute -bottom-1 -right-1 h-5 w-5 bg-emerald-500 border-2 border-white rounded-full" title="Connecté" />
           </div>
 
