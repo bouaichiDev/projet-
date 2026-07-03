@@ -1,0 +1,45 @@
+# Configuration du serveur
+server:
+  port: 8081 # Port du backend
+  #servlet:
+    #context-path: /api # Préfixe pour toutes les routes API
+
+spring:
+  application:
+    name: expense-tracker-backend
+
+  # Configuration de la base de données (MySQL via XAMPP)
+  datasource:
+    # URL de connexion à la base de données (assurez-vous de créer 'expensetracker' dans phpMyAdmin)
+    url: jdbc:mysql://localhost:3306/expensetracker?useSSL=false&serverTimezone=UTC
+    username: root # Nom d'utilisateur par défaut de XAMPP
+    password: # Laissez vide si vous n'avez pas de mot de passe
+    driver-class-name: com.mysql.cj.jdbc.Driver # Pilote MySQL
+
+  # Configuration de JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update # Met à jour automatiquement les tables selon vos classes Java
+    show-sql: true # Affiche les requêtes SQL dans la console pour le débogage
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect # Spécifie que nous utilisons MySQL
+
+# Configurations JWT pour la sécurité
+app:
+  jwt:
+    # Clé secrète utilisée pour signer les tokens
+    secret: 9a4f2c8d3e1b7f0a5c6d2e8b9f1a0c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9
+    # Durée de validité du token (24 heures en millisecondes)
+    expirationMs: 86400000
+
+# Configurations Swagger pour la documentation de l'API
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html # Accès à l'interface Swagger
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none

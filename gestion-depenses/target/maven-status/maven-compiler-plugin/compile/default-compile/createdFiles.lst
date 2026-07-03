@@ -1,0 +1,3 @@
+com\exemple\depenses\config\SecurityConfig.class
+com\exemple\depenses\GestionDepensesApplication.class
+com\exemple\depenses\config\JwtAuthenticationFilter.class

@@ -1,0 +1,6 @@
+{
+  "name": "Expense Tracker Backend",
+  "description": "A professional Spring Boot 3 & Java 21 REST API backend with layered architecture, Spring Security, JWT, PostgreSQL, and Swagger integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

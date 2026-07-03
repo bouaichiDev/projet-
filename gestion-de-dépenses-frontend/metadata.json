@@ -1,0 +1,6 @@
+{
+  "name": "Gestion de dépenses personnelles",
+  "description": "Frontend moderne, propre et élégant développé en React et Tailwind CSS pour la gestion et le suivi des dépenses personnelles.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
